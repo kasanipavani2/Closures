@@ -1,0 +1,6 @@
+Closures in JavaScript allow an inner function to remember and access variables from its outer function, even after the outer function has finished executing. 
+In the counter example, the variable count is defined inside the createCounter() function, making it unreachable from the outside world. 
+However, because the returned inner function forms a closure, it retains access to count every time it is called. 
+This means the counter can be incremented and preserved between function calls without exposing count directly. 
+As a result, closures help encapsulate the counter variable by keeping it private and controlled only through the function returned, 
+ensuring data protection and preventing unintended modifications from outside the function.
