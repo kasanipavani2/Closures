@@ -1,0 +1,33 @@
+What Happens When Multiple Counters are Created?
+
+When multiple counters are created using the same closure-based counter function, each counter maintains its own private state. 
+Even though they come from the same function, every time createCounter() is called, a new execution context is created with a separate count variable. 
+This means the counters do not affect each other—they store and update values independently. 
+This behavior clearly demonstrates how closures preserve data uniquely for each function instance, helping us build modular and self-contained logic in applications.
+
+
+Example Demonstrating Independent Closures
+
+function createCounter() {
+  let count = 0;
+  return function () {
+    count++;
+    return count;
+  };
+}
+
+const counter1 = createCounter();
+const counter2 = createCounter();
+
+console.log(counter1()); // 1
+console.log(counter1()); // 2
+
+console.log(counter2()); // 1 (starts separately)
+console.log(counter2()); // 2
+console.log(counter1()); // 3 (continues its own count)
+
+Explanation :
+
+counter1 and counter2 both come from createCounter().
+Each has a unique closure retaining a separate count variable.
+Incrementing counter1 does not change counter2, and vice-versa.
