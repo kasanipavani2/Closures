@@ -1,0 +1,48 @@
+Updated Bank Account Using Closures (with Transaction History) :
+
+function createAccount(initialBalance = 0) {
+  let balance = initialBalance;
+  let transactionHistory = [];
+
+  function deposit(amount) {
+    balance += amount;
+    transactionHistory.push(`Deposited ₹${amount}`);
+    return balance;
+  }
+
+  function withdraw(amount) {
+    if (amount > balance) {
+      transactionHistory.push(`Failed withdrawal attempt of ₹${amount}`);
+      return "Insufficient Funds";
+    }
+    balance -= amount;
+    transactionHistory.push(`Withdrew ₹${amount}`);
+    return balance;
+  }
+
+  function getBalance() {
+    return balance;
+  }
+
+  function getTransactionHistory() {
+    return transactionHistory;
+  }
+
+  return { deposit, withdraw, getBalance, getTransactionHistory };
+}
+
+// Example usage
+const account = createAccount(1000);
+account.deposit(500);
+account.withdraw(200);
+console.log(account.getTransactionHistory());
+
+Explanation: How closures enable transaction history
+
+Closures enable the transactionHistory feature by allowing the inner functions to retain access to variables
+from their outer function even after it has finished executing. The transactionHistory array is defined inside the createAccount() 
+function and is not directly accessible from outside the function, which keeps it private.
+However, the returned inner methods (deposit, withdraw, and getTransactionHistory) form closures over this variable. 
+This means they can read and update the history even when called later. Each transaction pushes a new entry into the array, 
+and the closure ensures that the data persists across multiple function calls.
+Thus, closures help maintain state over time while also protecting it from external modification, giving us a secure encapsulated transaction tracking system.
