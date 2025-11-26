@@ -1,0 +1,8 @@
+How does the closure ensure that the balance variable is private?
+
+Closures ensure that the balance variable remains private by keeping it inside the lexical scope of the outer function and only 
+allowing controlled access through the inner functions. The balance variable cannot be accessed directly from outside because it is 
+not returned or exposed globally—it lives only inside the closure environment. When the outer function returns the inner functions, 
+those functions retain access to the balance variable even after the outer function has finished executing. 
+This way, JavaScript allows reading or modifying the balance only through predefined methods such as deposit or withdraw, preventing accidental or unauthorized changes. 
+Thus, closures act like a secure capsule, maintaining data privacy and integrity similar to private properties in object-oriented programming.
